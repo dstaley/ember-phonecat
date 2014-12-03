@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+
+      Search: {{input type="text" value=searchTerm}}
+      Sort by:
+      {{view "select"
+            content=sorts
+            optionValuePath="content.id"
+            optionLabelPath="content.name"
+            selection=selectedSort
+         	}}
+
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+
+      <ul class="phones">
+      	{{#each phone in searchResults}}
+        <li class="thumbnail phone-listing">
+          {{#link-to 'phones' phone.id classNames="thumb"}}<img {{bind-attr src=phone.imageUrl}}>{{/link-to}}
+          {{#link-to 'phones' phone.id}}{{phone.name}}{{/link-to}}
+          <p>{{phone.snippet}}</p>
+        </li>
+        {{/each}}
+      </ul>
+
+    </div>
+  </div>
+</div>
